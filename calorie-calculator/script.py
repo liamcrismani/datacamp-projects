@@ -5,7 +5,7 @@ with open('nutrition.json', 'r') as json_file:
     nutrition_dict = json.load(json_file)  # Load JSON content into dictionary
 
 
-def nutritional_summary(food_dict: dict) -> None:
+def nutritional_summary(food_dict: dict) -> dict:
     """
     Calculates total nutritional summary for given food and quantity
 
@@ -24,15 +24,25 @@ def nutritional_summary(food_dict: dict) -> None:
     """
 
     # Initialise result.
-    result = {}
-
+    result = {'calories': 0, 'total_fat': 0, 'protein': 0, 'carbohydrate': 0, 
+              'sugars': 0}
+    
     # Process each food item.
-    for food in food_dict.keys():
+    for food in food_dict.items():
+   
+        if food[0] in nutrition_dict.keys():
+            # Calculate nutrional values
+            result['calories'] += round(food[1]/100 * nutrition_dict.get(food[0])['calories'], 2)
+            result['total_fat'] += round(food[1]/100 * nutrition_dict.get(food[0])['total_fat'], 2)
+            result['protein'] += round(food[1]/100 * nutrition_dict.get(food[0])['protein'], 2)
+            result['carbohydrate'] += round(food[1]/100 * nutrition_dict.get(food[0])['carbohydrate'], 2)
+            result['sugars'] += round(food[1]/100 * nutrition_dict.get(food[0])['sugars'], 2)
+        
+        elif food[0] not in nutrition_dict.keys():
+            result = food[0]
+            break
+    
+    return result
 
-        # Handle non-existant food items.
-        if food not in nutrition_dict.keys():
-            print(food)
 
-        else:
-            # Calculate nutrional values.
-            print(5)
+print(nutritional_summary({"Croissant": 150, "Orange juice": 250}))
