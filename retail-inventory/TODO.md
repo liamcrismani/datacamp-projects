@@ -1,0 +1,13 @@
+- [x] define classes
+	- [x] define Product
+	- [x] define Order
+- [ ] construct Product class
+	- [x] def class level variable inventory
+	- [x] def init method
+	- [x] initialise instance attributes
+	- [x] def add_product - this is a class method
+	- [x] def update_product
+	- [x] def delete_product
+	- [ ] BONUS - def string representation
+- [ ] construct Order class
+	- do this when Product is done...
