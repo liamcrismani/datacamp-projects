@@ -1,4 +1,4 @@
-def validate_user(name: str, email: str, password: str) -> None:
+def validate_user(name: str, email: str, password: str) -> bool | None:
     if validate_name(name):
         pass
     else:
@@ -13,7 +13,7 @@ def validate_user(name: str, email: str, password: str) -> None:
         raise ValueError("Invalid password format.")
     return True
 
-def register_user(name: str, email: str, password: str) -> None:
+def register_user(name: str, email: str, password: str) -> dict[str] | bool:
     if validate_user(name, email, password):
         user = {'name': name, 'email': email, 'password': password}
         return user 
