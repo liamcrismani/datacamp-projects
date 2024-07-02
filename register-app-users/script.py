@@ -1,3 +1,5 @@
+from python_functions import *
+
 def validate_user(name: str, email: str, password: str) -> bool | None:
     """ Checks users inputs are of correct types.
 
