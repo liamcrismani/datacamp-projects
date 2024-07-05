@@ -1,4 +1,6 @@
-from python_functions import *
+from signupfunctions.validation_functions import validate_name, validate_email, top_level_domains
+from python_functions import validate_password
+
 
 def validate_user(name: str, email: str, password: str) -> bool | None:
     """ Checks users inputs are of correct types.
