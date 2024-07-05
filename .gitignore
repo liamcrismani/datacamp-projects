@@ -1,2 +1,5 @@
 # All pycache folders
 __pycache__/
+
+# .idea folder
+.idea/
