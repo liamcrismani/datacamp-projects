@@ -1,2 +1,2 @@
-- [ ] Join with 'register app users' repo
+- [x] Join with 'register app users' repo
 - [x] write test functions
