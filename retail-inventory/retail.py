@@ -1,5 +1,5 @@
 class Product:
-
+    
     inventory = []
 
     def __init__(self, product_id, name, category, quantity, price, supplier):
@@ -9,46 +9,68 @@ class Product:
         self.quantity = quantity
         self.price = price
         self.supplier = supplier
+        Product.inventory.append(self)
 
     @classmethod
     def add_product(cls, name, category, quantity, price, supplier):
-        cls.product_id = len(inventory) + 1
-        new_product = Product(cls.product_id, name, category, quantity, price, supplier)
-        inventory.append(cls.new_product)
-        print("Product added successfully")
+        product_id = len(cls.inventory) + 1
+        new_product = cls(product_id, name, category, quantity, price, supplier)
+        return "Product added successfully."
 
     @classmethod
     def update_product(cls, product_id, quantity=None, price=None, supplier=None):
-        for product in inventory:
+        for product in cls.inventory:
             if product.product_id == product_id:
-                if quantity:
+                if quantity is not None:
                     product.quantity = quantity
-                elif price:
+                if price is not None:
                     product.price = price
-                elif supplier:
+                if supplier is not None:
                     product.supplier = supplier
-                    print("Product information updated successfully.")
-            else:
-                print("Product not found.")
+                return "Product information updated successfully."
+        return "Product not found."
 
     @classmethod
     def delete_product(cls, product_id):
-        for product in inventory:
+        for i, product in enumerate(cls.inventory):
             if product.product_id == product_id:
-                inventory.remove(product)
-                print("Product deleted successfully.")
-            else:
-                print("Product not found.")
-
+                del cls.inventory[i]
+                return "Product deleted successfully."    
+        return "Product not found."
+            
 
 class Order:
 
-    def __init__(self, order_id, products, customer_info):
+    def __init__(self, order_id, products, customer_info=None):
         self.order_id = order_id
         self.products = products
-        self.customer_info = None
+        self.customer_info = customer_info
 
     def place_order(self, product_id, quantity, customer_info=None):
-	    products.append((product_id, quantity))
-	    print(f"Order placed successfull. Order ID:{self.order_id}")
-	
+        for product in Product.inventory:
+            if product.product_id == product_id and product.quantity >= quantity:
+                product.quantity -= quantity
+                self.products.append((product_id, quantity))
+                if customer_info:
+                    self.customer_info = customer_info
+                return f"Order placed successfully. Order ID: {self.order_id}"
+        return "Order could not be placed. Product not found or insufficient quantity."
+
+
+# As an example, your code must be able to create products like this:
+
+p1 = Product.add_product("Laptop", "Electronics", 50, 1000, "Supplier A")
+
+# Update them like this:
+
+update_p1 = Product.update_product(1, quantity=45, price=950)
+
+# Delete them like this:
+
+delete_p1 = Product.delete_product(1)
+
+# And, create and place orders like this:
+
+order = Order(order_id=1, products=[])
+
+order_placement = order.place_order(1, 2, customer_info="John Doe")
