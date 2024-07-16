@@ -6,7 +6,7 @@ def prepare_smartphone_data(file_path):
     """
     Prepare smartphone data for visualization:
         - read csv to DataFrame
-        - reducing the number of columns to only those needed for later analysis
+        - reducing the number of columns to only those needed for analysis
         - removing records without a battery_capacity value
         - divide the price column by 100 to find the dollar amount
 
