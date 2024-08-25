@@ -18,4 +18,5 @@ My DataCamp portfolio: https://www.datacamp.com/portfolio/liamcrismani-3897c6ee-
 |[Building Core Sign-Up Functions to Help Validate New Users](/register-app-users)|Create custom Python functions to validate user input. Joined with the project below.|
 |[Creating Functions to Register App Users](/register-app-users)|Define functions to catch errors when new users register for an app. Joined with the project above.|
 |[Impact Analysis of GoodThough NGO Initiatives](/goodthought-impact-analysis)|Use SQL to explore and analyze GoodThought NGO's database, uncovering key insights from over 13 years of transformative projects.|
-|[Performing a Code Review]| Review a data analysis workflow for adherence to Python standards and best-practices.|
+|[Performing a Code Review](/code-review)| Review a data analysis workflow for adherence to Python standards and best-practices.|
+|[Tech talent recruiting with regex](/tech-talent-recruiting)| Use regular expressions and data preprocessing to find tech job candidates from thousands of resumes.|
