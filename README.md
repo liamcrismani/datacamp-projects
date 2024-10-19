@@ -20,3 +20,4 @@ My DataCamp portfolio: https://www.datacamp.com/portfolio/liamcrismani-3897c6ee-
 |[Impact Analysis of GoodThough NGO Initiatives](/goodthought-impact-analysis)|Use SQL to explore and analyze GoodThought NGO's database, uncovering key insights from over 13 years of transformative projects.|
 |[Performing a Code Review](/code-review)| Review a data analysis workflow for adherence to Python standards and best-practices.|
 |[Tech talent recruiting with regex](/tech-talent-recruiting)| Use regular expressions and data preprocessing to find tech job candidates from thousands of resumes.|
+|[Finding Exchange Rates for International Sales](/exchange-rates/)| Query [VAT Comply rates API's](https://www.vatcomply.com/documentation#rates) to calculate sales totals.|
