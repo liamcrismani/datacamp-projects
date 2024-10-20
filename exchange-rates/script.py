@@ -4,7 +4,7 @@ import requests
 import json
 
 # Read the CSV file into a DataFrame
-orders = pd.read_csv('data/orders-2024-01-21.csv')
+orders = pd.read_csv('exchange-rates/data/orders-2024-01-21.csv')
 
 # Define a function to get the exchange rate
 def get_exchange_rate(json_data: dict, key: str) -> float:
@@ -24,7 +24,7 @@ params = {'base':'USD', 'date':'2024-01-21'}
 response = requests.get('https://api.vatcomply.com/rates', params=params)
 
 # Transform the response text to a dictionary
-rates = json.loads(response.text)
+rates = response.json()
 
 # Create empty lists to store our new columns
 exchange_rate = []
@@ -45,4 +45,4 @@ orders['amount_usd'] = amount_usd
 total_usd_sales = orders['amount_usd'].sum() 
 
 # Preview the new df
-orders.head()
+print(orders.head())
