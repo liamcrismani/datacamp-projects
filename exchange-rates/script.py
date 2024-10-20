@@ -24,25 +24,17 @@ params = {'base':'USD', 'date':'2024-01-21'}
 response = requests.get('https://api.vatcomply.com/rates', params=params)
 
 # Transform the response text to a dictionary
-rates = response.json()
+rates = response.json()['rates']
 
-# Create empty lists to store our new columns
-exchange_rate = []
-amount_usd = []
+# Map the exchange rates to the orders df
+orders['exchange_rate'] = orders['currency'].map(rates, na_action='ignore')
 
-# Apply the functions to the df and append to the lists
-for row in orders.itertuples(index=False):
-    exchange_rate.append(get_exchange_rate(rates, row.currency))
-
-orders['exchange_rate'] = exchange_rate
-
-for row in orders.itertuples(index=False):
-    amount_usd.append(calc_usd(row.amount, row.exchange_rate))
-
-orders['amount_usd'] = amount_usd
+# Create the amount column
+orders['amount_usd'] = orders['amount'] * orders['exchange_rate']
 
 # Calculate total sales for the day
 total_usd_sales = orders['amount_usd'].sum() 
+print(total_usd_sales)
 
 # Preview the new df
 print(orders.head())
