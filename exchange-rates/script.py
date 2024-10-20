@@ -6,17 +6,6 @@ import json
 # Read the CSV file into a DataFrame
 orders = pd.read_csv('exchange-rates/data/orders-2024-01-21.csv')
 
-# Define a function to get the exchange rate
-def get_exchange_rate(json_data: dict, key: str) -> float:
-    """Return the exchange rate by accessing the rate from a dictionary"""
-    return json_data['rates'][key]
-    
-# Define a function to get the amount in USD
-def calc_usd(amount: float, exchange_rate: float) -> float:
-    """Converts a currency to USD based on a given exchange rate"""
-    return amount * exchange_rate
-
-
 # Define parameters
 params = {'base':'USD', 'date':'2024-01-21'}
 
