@@ -1,7 +1,7 @@
 # Import required packages/libraries
 import pandas as pd
 import requests
-import json
+
 
 # Read the CSV file into a DataFrame
 orders = pd.read_csv('exchange-rates/data/orders-2024-01-21.csv')
