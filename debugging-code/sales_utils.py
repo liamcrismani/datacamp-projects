@@ -19,7 +19,7 @@ def get_quantity_ordered_sum(sales_quantity_ordered: pd.core.series.Series) -> i
     except TypeError:
         print("Column is of wrong data type: ", type(sales_quantity_ordered[0]))
 
-#TODO: Add try except block
+
 def get_price_each_average(sales_price_each, num_places=2):
     """Calculates the average on the 'price_each' column
        using pandas built in methods and rounds to the desired number of places.
@@ -31,10 +31,12 @@ def get_price_each_average(sales_price_each, num_places=2):
     Returns:
         average_price_each (float): The average of the 'price_each' column.
     """
-
-    total_of_price_each = sales_price_each.sum()
-    len_of_price_each = len(sales_price_each)
-    average_price_each = round(
-        total_of_price_each / len_of_price_each, num_places
-    )
-    return average_price_each
+    try:
+        total_of_price_each = sales_price_each.sum()
+        len_of_price_each = len(sales_price_each)
+        average_price_each = round(
+            total_of_price_each / len_of_price_each, num_places
+        )
+        return average_price_each
+    except TypeError:
+        print("column is of wrong data type: ", type(sales_price_each[0]))
