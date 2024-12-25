@@ -1,7 +1,6 @@
 import pandas as pd
 
 
-#TODO: add try except
 def get_quantity_ordered_sum(sales_quantity_ordered: pd.core.series.Series) -> int:
     """Calculates the total sum on the 'quantity_ordered' column.
 
@@ -11,11 +10,14 @@ def get_quantity_ordered_sum(sales_quantity_ordered: pd.core.series.Series) -> i
     Returns:
         total_quantity_ordered (int): The total sum of the 'quantity_ordered' column.
     """
-
-    total_quantity_ordered = 0
-    for quantity in sales_quantity_ordered:
-        total_quantity_ordered += quantity
-    return total_quantity_ordered
+    try:
+        total_quantity_ordered = 0
+        for quantity in sales_quantity_ordered:
+            total_quantity_ordered += quantity
+        return total_quantity_ordered
+    
+    except TypeError:
+        print("Column is of wrong data type: ", type(sales_quantity_ordered[0]))
 
 #TODO: Add try except block
 def get_price_each_average(sales_price_each, num_places=2):
