@@ -12,6 +12,16 @@ class Wedding:
 
 
     def send_invitation(self, name:str, email: str, is_special: bool = False) -> None:
+        """
+
+        Args:
+          name:str: 
+          email: str: 
+          is_special: bool:  (Default value = False)
+
+        Returns:
+          None
+        """
         if email in self.invitation_list:
             print(f"Guest with email {email} already exists")
         if is_special:
@@ -23,10 +33,14 @@ class Wedding:
 
     def retrieve_invitation(self, email: str) -> Optional['Invitation']:
         """Method to retrieve an invitation using the guest's email address.
-        Parameters:
-          email: The email address of the guest.
+
+        Args:
+          email: The email address of the guest
+          email: str: 
+
         Returns:
           The Invitation object if found, otherwise None.
+
         """
         for invitation in self.invitation_list:
             if invitation.guest.email == email:
@@ -34,8 +48,15 @@ class Wedding:
         return None
 
 
-    def get_guest_by_email(self, email: str) -> Any:
-        """"Return matching guest from searched email."""
+    def get_guest_by_email(self, email: str) -> Optional['Guest']:
+        """Return matching guest from searched email.
+
+        Args:
+          email: str: 
+
+        Returns:
+          The Guest object if found, otherwise None.
+        """
         for invitation in self.invitation_list:
             if invitation.guest.email == email:
                 return invitation.guest
@@ -102,8 +123,16 @@ class SpecialGuest(Guest):
         self.plus_one = plus_one
         
     
-    def invite_plus_one(self, name: str, email: str):
-        """Extend an Invitation to another Guest."""
+    def invite_plus_one(self, name: str, email: str) -> None:
+        """Extend an Invitation to another Guest.
+
+        Args:
+          name: str: 
+          email: str: 
+
+        Returns:
+          None
+        """
         if self.plus_one:
             print("Already invited a plus one")
             return 
@@ -115,9 +144,12 @@ class SpecialGuest(Guest):
 
     def uninvite_plus_one(self) -> None:
         """Uninvite the special guest's plus-one.
-        
-        Params:
-          self: The SpecialGuest instance.
+
+        Args:
+          self: The SpecialGuest instance
+
+        Returns:
+          None
         """
         if self.plus_one:
             invitation = self.wedding.retrieve_invitation(self.plus_one.email)
