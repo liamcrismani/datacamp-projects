@@ -1,4 +1,4 @@
-from typing import Optional, List, Any
+from typing import Optional, List
 
 
 class Wedding:
@@ -7,8 +7,8 @@ class Wedding:
     def __init__(self, bride_name: str, groom_name: str):
         self.bride_name = bride_name
         self.groom_name = groom_name
-        self.confirmed_guest_list: List[Guest] = list()
-        self.invitation_list: List[Invitation] = list()
+        self.confirmed_guest_list: List[Guest] = []
+        self.invitation_list: List[Invitation] = []
 
 
     def send_invitation(self, name:str, email: str, is_special: bool = False) -> None:
@@ -66,7 +66,7 @@ class Wedding:
 class Invitation:
     """Representation of wedding invitation."""
 
-    def __init__(self, guest: Guest):
+    def __init__(self, guest: 'Guest'):
         self.guest = guest
         self.status: str = "pending"
 
@@ -82,7 +82,7 @@ class Invitation:
 class Guest:
     """Guest class for Wedding invitees."""
 
-    def __init__(self, name: str, email: str, wedding: Wedding, 
+    def __init__(self, name: str, email: str, wedding: Wedding,
                  inviting_guest_email: Optional[str] = None) -> None:
         """The __init__ method initializes a new instance of the Guest class.
         Params:
@@ -100,7 +100,7 @@ class Guest:
     def accept_invitation(self) -> None:
         """Accept their invitation and add to guest list."""
         invitation: Invitation = self.wedding.retrieve_invitation(self.email)
-        if invitation: 
+        if invitation:
             invitation.accept()
             if self not in self.wedding.confirmed_guest_list:
                 self.wedding.confirmed_guest_list.append(self)
@@ -117,12 +117,12 @@ class Guest:
 
 class SpecialGuest(Guest):
     """Guest with the ability to invite a plus one."""
-    def __init__(self, name: str, email: str, wedding: Wedding, 
+    def __init__(self, name: str, email: str, wedding: Wedding,
                  inviting_guest_email: Optional[str] = None, plus_one: Optional[str] = None):
         super().__init__(name, email, wedding, inviting_guest_email)
         self.plus_one = plus_one
-        
-    
+
+
     def invite_plus_one(self, name: str, email: str) -> None:
         """Extend an Invitation to another Guest.
 
@@ -135,12 +135,12 @@ class SpecialGuest(Guest):
         """
         if self.plus_one:
             print("Already invited a plus one")
-            return 
+            return
         if email not in self.wedding.confirmed_guest_list:
             self.wedding.send_invitation(name, email)
             self.plus_one = self.wedding.get_guest_by_email(email)
             print(f"Plus one invitation sent to {email}")
-        
+
 
     def uninvite_plus_one(self) -> None:
         """Uninvite the special guest's plus-one.
